@@ -3,8 +3,6 @@ import EventsTable from "./_components/events-table";
 import { PropsWithParams } from "@/types";
 import { eventQuerySchema } from "@/utils/validations";
 
-export const revalidate = 10 * 60;
-
 export default async function EventsPage({ searchParams }: PropsWithParams) {
   const { data: query } = eventQuerySchema.safeParse(await searchParams);
   const events = await getEvents(query);
