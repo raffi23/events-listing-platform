@@ -34,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${barlow.variable} antialiased`}>
-        <main className="p-4">{children}</main>
+        <main className="p-4 max-w-screen-xl mx-auto">{children}</main>
       </body>
     </html>
   );
