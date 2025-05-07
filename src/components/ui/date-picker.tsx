@@ -17,6 +17,7 @@ const DatePicker: FC<Props> = ({
   ...rest
 }) => {
   const [innerValue, setInnerValue] = useState("");
+  const [pickerVisible, setPickerVisible] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const buttonValue = innerValue || defaultValue || value || placeholder;
   const isPlaceholder = buttonValue === placeholder;
@@ -30,7 +31,15 @@ const DatePicker: FC<Props> = ({
           isPlaceholder && "text-gray-400",
           className
         )}
-        onClick={() => inputRef.current?.showPicker()}
+        onClick={() => {
+          if (pickerVisible) {
+            inputRef.current?.blur();
+            setPickerVisible(false);
+          } else {
+            inputRef.current?.showPicker();
+            setPickerVisible(true);
+          }
+        }}
       >
         {buttonValue}
       </button>
