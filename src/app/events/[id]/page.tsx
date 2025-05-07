@@ -12,6 +12,7 @@ import { PropsWithParams } from "@/types";
 import EventTimer from "./_component/event-timer";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { config } from "@/config";
 
 export const revalidate = 60;
 export const dynamicParams = true;
@@ -19,6 +20,13 @@ export const dynamicParams = true;
 export const generateStaticParams = async () => {
   const events = await getEvents();
   return events.slice(0, 30).map((event) => ({ id: `${event.id}` }));
+};
+
+export const generateMetadata = async ({ params }: PropsWithParams) => {
+  const id = (await params).id;
+  const [event] = await getEvents({ id });
+  if (!event) return { title: `Event not found | ${config.short_name}` };
+  else return { title: `${event.title} | ${config.short_name}` };
 };
 
 export default async function EventPage({ params }: PropsWithParams) {

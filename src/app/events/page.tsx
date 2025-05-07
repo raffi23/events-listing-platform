@@ -3,6 +3,13 @@ import EventsTable from "./_components/events-table";
 import { PropsWithParams } from "@/types";
 import { eventQuerySchema } from "@/utils/validations";
 import NextLink from "@/components/ui/link";
+import { Metadata } from "next";
+import { config } from "@/config";
+
+export const metadata: Metadata = {
+  title: `Events | ${config.short_name}`,
+  description: "Find the best events",
+};
 
 export default async function EventsPage({ searchParams }: PropsWithParams) {
   const { data: query } = eventQuerySchema.safeParse(await searchParams);
@@ -17,7 +24,7 @@ export default async function EventsPage({ searchParams }: PropsWithParams) {
         >
           {"<"}
         </NextLink>
-        <h1 className="text-4xl font-bold">Event listings</h1>
+        <h1 className="text-4xl font-bold">Events listing</h1>
       </div>
       <EventsTable events={events} />
     </div>

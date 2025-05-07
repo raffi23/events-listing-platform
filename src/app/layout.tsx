@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Barlow, Inter } from "next/font/google";
 import "./globals.css";
+import { config } from "@/config";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -17,8 +18,12 @@ const barlow = Barlow({
 });
 
 export const metadata: Metadata = {
-  title: "Events Listing",
-  description: "events listing platform",
+  title: `${config.name} | ${config.short_name}`,
+  description: config.description,
+  openGraph: {
+    title: config.name,
+    description: config.description,
+  },
 };
 
 export default function RootLayout({
