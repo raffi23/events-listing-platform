@@ -42,16 +42,16 @@ const EventsTableFilters = () => {
         onChange={(e) => handleQueryChange("title", e.target.value)}
       />
       <Input
-        label="Category"
-        placeholder="Search by category"
-        defaultValue={decodeURIComponent(currentValues?.type || "")}
-        onChange={(e) => handleQueryChange("type", e.target.value)}
-      />
-      <Input
         label="Location"
         placeholder="Search by location"
         defaultValue={decodeURIComponent(currentValues?.location || "")}
         onChange={(e) => handleQueryChange("location", e.target.value)}
+      />
+      <Input
+        label="Category"
+        placeholder="Search by category"
+        defaultValue={decodeURIComponent(currentValues?.type || "")}
+        onChange={(e) => handleQueryChange("type", e.target.value)}
       />
       <DatePicker
         label="Start at"
