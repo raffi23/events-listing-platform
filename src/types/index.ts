@@ -8,3 +8,13 @@ export type EventListing = {
   expires_at: string;
   image_url: string;
 };
+
+export type Stringify<T> = {
+  [K in keyof T]?: string;
+};
+
+export type EventListingQuery = Stringify<EventListing>;
+
+export type PropsWithParams = {
+  params: Promise<Record<string, string>>;
+};

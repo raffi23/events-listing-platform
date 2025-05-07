@@ -1,7 +1,7 @@
-import { EventListing } from "@/types";
+import { EventListing, EventListingQuery } from "@/types";
 import { fetchAPI } from "./fetch";
 
-export const getEvents = async (query?: Record<string, string>) => {
+export const getEvents = async (query?: EventListingQuery) => {
   const url = `/events${query ? `?${new URLSearchParams(query)}` : ""}`;
   const response = await fetchAPI(url, { method: "GET" });
   if (!response.ok) {
