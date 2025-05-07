@@ -24,10 +24,9 @@ const EventsTable: FC<Props> = ({ events }) => {
         <TableHeader>
           <TableRow>
             <TableHead>Title</TableHead>
-            <TableHead>Status</TableHead>
             <TableHead>Location</TableHead>
             <TableHead>Type</TableHead>
-            <TableHead>Expires at</TableHead>
+            <TableHead>Status</TableHead>
           </TableRow>
         </TableHeader>
 
