@@ -8,7 +8,7 @@ export default async function EventsPage({ searchParams }: PropsWithParams) {
   const events = await getEvents(query);
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-5">
       <h1 className="text-4xl font-bold">Event listings</h1>
       <EventsTable events={events} />
     </div>

@@ -11,6 +11,7 @@ import { getEvents } from "@/lib/api";
 import { PropsWithParams } from "@/types";
 import EventTimer from "./_component/event-timer";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export const revalidate = 60;
 export const dynamicParams = true;
@@ -24,16 +25,18 @@ export default async function EventPage({ params }: PropsWithParams) {
   const id = (await params).id;
   const [event] = await getEvents({ id });
 
-  if (!event) return null;
+  if (!event) {
+    redirect("/not_found");
+  }
 
   return (
     <Card>
       <CardCover>
         <NextImage src={event.image_url} alt="" />
-        <div className="absolute top-0 left-0 p-4 bg-white rounded-br-lg">
+        <div className="absolute max-sm:bottom-0 sm:top-0 left-0 p-3 text-sm bg-white max-sm:rounded-tr-lg sm:rounded-br-lg">
           <Link href="/events">{"<--"} Back</Link>
         </div>
-        <div className="absolute top-0 right-0 p-4 bg-white rounded-bl-lg">
+        <div className="absolute top-0 right-0 p-3 text-sm bg-white rounded-bl-lg">
           <EventTimer event={event} />
         </div>
       </CardCover>
