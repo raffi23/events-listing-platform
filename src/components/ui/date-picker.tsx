@@ -20,11 +20,11 @@ const DatePicker: FC<Props> = ({
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   return (
-    <div className="flex flex-col gap-1 relative">
+    <div className="flex flex-col gap-1 relative sm:min-w-52">
       {label && <label className="text-sm">{label}</label>}
       <button
         className={cx(
-          "min-w-52 text-sm text-start border rounded-md h-9 p-2 focus-visible:outline-gray-600 w-full",
+          "text-sm text-start border rounded-md h-9 p-2 focus-visible:outline-gray-600 w-full",
           className
         )}
         onClick={() => inputRef.current?.showPicker()}
