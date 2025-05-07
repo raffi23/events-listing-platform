@@ -27,7 +27,7 @@ const EventsTableFilters = () => {
   ) => {
     const { data: query } = eventQuerySchema.safeParse({
       ...currentValues,
-      [key]: encodeURIComponent(value || ""),
+      [key]: value || "",
     });
     const updatedQuery = new URLSearchParams(query);
     debounceChangeHandler(updatedQuery);
