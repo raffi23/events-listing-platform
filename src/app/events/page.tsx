@@ -6,6 +6,8 @@ import NextLink from "@/components/ui/link";
 import { Metadata } from "next";
 import { appConfig } from "@/config";
 
+export const revalidate = 120;
+
 export const metadata: Metadata = {
   title: `Events | ${appConfig.short_name}`,
   description: "Find the best events",
