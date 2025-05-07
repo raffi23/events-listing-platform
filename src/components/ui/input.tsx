@@ -11,7 +11,7 @@ const Input: FC<Props> = ({ label, className, ...rest }) => {
       {label && <label className="text-sm">{label}</label>}
       <input
         className={cx(
-          "w-full sm:min-w-52 border rounded-md h-9 p-2 focus-visible:outline-gray-600",
+          "w-full sm:min-w-52 border rounded-md h-9 p-2 focus-visible:outline-gray-600 dark:bg-gray-800",
           className
         )}
         {...rest}

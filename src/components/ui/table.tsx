@@ -21,7 +21,7 @@ const TableToolbar: FC<HTMLAttributes<HTMLDivElement>> = ({
   return (
     <div
       className={cx(
-        "sticky top-0 grid grid-cols-2 sm:flex sm:items-center gap-2 flex-wrap bg-white py-4 border-b",
+        "sticky top-0 grid grid-cols-2 sm:flex sm:items-center gap-2 flex-wrap bg-white dark:bg-gray-800 rounded-md p-4 border-b",
         className
       )}
       {...rest}
@@ -51,7 +51,10 @@ const TableHeader: FC<HTMLAttributes<HTMLTableSectionElement>> = ({
   ...rest
 }) => {
   return (
-    <thead className={cx("bg-gray-100 [&_tr]:border-b", className)} {...rest}>
+    <thead
+      className={cx("bg-gray-100 dark:bg-gray-800 [&_tr]:border-b", className)}
+      {...rest}
+    >
       {children}
     </thead>
   );
@@ -77,7 +80,7 @@ const TableRow: FC<HTMLAttributes<HTMLTableRowElement>> = ({
   return (
     <tr
       className={cx(
-        "hover:bg-gray-100 transition-colors duration-100",
+        "hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-100",
         className
       )}
       {...rest}
@@ -110,7 +113,7 @@ const TableHead: FC<ThHTMLAttributes<HTMLTableCellElement>> = ({
   return (
     <th
       className={cx(
-        "text-start font-semibold align-middle text-gray-600 h-12 px-4",
+        "text-start font-semibold align-middle text-gray-600 dark:text-white h-12 px-4",
         className
       )}
       {...rest}

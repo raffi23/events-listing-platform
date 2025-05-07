@@ -41,10 +41,10 @@ export default async function EventPage({ params }: PropsWithParams) {
     <Card>
       <CardCover>
         <NextImage src={event.image_url} alt="" />
-        <div className="absolute max-sm:bottom-0 sm:top-0 left-0 p-3 text-sm bg-white max-sm:rounded-tr-lg sm:rounded-br-lg">
+        <div className="absolute max-sm:bottom-0 sm:top-0 left-0 p-3 text-sm bg-white dark:bg-gray-800 max-sm:rounded-tr-lg sm:rounded-br-lg">
           <Link href="/events">{"<--"} Back</Link>
         </div>
-        <div className="absolute top-0 right-0 p-3 text-sm bg-white rounded-bl-lg">
+        <div className="absolute top-0 right-0 p-3 text-sm bg-white dark:bg-gray-800 rounded-bl-lg">
           <EventTimer event={event} />
         </div>
       </CardCover>

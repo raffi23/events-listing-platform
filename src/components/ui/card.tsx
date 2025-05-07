@@ -8,7 +8,10 @@ const Card: FC<HTMLAttributes<HTMLDivElement>> = ({
 }) => {
   return (
     <div
-      className={cx("flex flex-col gap-4 border rounded-md", className)}
+      className={cx(
+        "flex flex-col gap-4 border rounded-md overflow-hidden",
+        className
+      )}
       {...rest}
     >
       {children}
@@ -58,7 +61,10 @@ const CardSubtitle: FC<HTMLAttributes<HTMLDivElement>> = ({
   ...rest
 }) => {
   return (
-    <div className={cx("text-sm text-gray-500", className)} {...rest}>
+    <div
+      className={cx("text-sm text-gray-500 dark:text-gray-400", className)}
+      {...rest}
+    >
       {children}
     </div>
   );
