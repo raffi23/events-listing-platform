@@ -4,10 +4,10 @@ import { PropsWithParams } from "@/types";
 import { eventQuerySchema } from "@/utils/validations";
 import NextLink from "@/components/ui/link";
 import { Metadata } from "next";
-import { config } from "@/config";
+import { appConfig } from "@/config";
 
 export const metadata: Metadata = {
-  title: `Events | ${config.short_name}`,
+  title: `Events | ${appConfig.short_name}`,
   description: "Find the best events",
 };
 

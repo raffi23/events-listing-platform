@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Barlow, Inter } from "next/font/google";
 import "./globals.css";
-import { config } from "@/config";
+import { appConfig } from "@/config";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -18,11 +18,11 @@ const barlow = Barlow({
 });
 
 export const metadata: Metadata = {
-  title: `${config.name} | ${config.short_name}`,
-  description: config.description,
+  title: `${appConfig.name} | ${appConfig.short_name}`,
+  description: appConfig.description,
   openGraph: {
-    title: config.name,
-    description: config.description,
+    title: appConfig.name,
+    description: appConfig.description,
   },
 };
 

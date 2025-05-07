@@ -1,4 +1,4 @@
-export const config = {
+export const appConfig = {
   name: "Event Listing Platform",
   short_name: "ELP",
   description: "A platform to list upcoming and ongoing events",
