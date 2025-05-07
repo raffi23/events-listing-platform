@@ -1,6 +1,8 @@
 import { getEvents } from "@/lib/api";
 import Link from "next/link";
 
+export const revalidate = 10 * 60;
+
 export default async function EventsPage() {
   const events = await getEvents();
 
