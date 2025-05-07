@@ -6,6 +6,7 @@ import { TableToolbar } from "@/components/ui/table";
 import useDebounce from "@/hooks/useDebounce";
 import { eventQuerySchema } from "@/utils/validations";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 import { z } from "zod";
 
 type QuerySchema = z.infer<typeof eventQuerySchema>;
@@ -13,9 +14,9 @@ type QuerySchema = z.infer<typeof eventQuerySchema>;
 const EventsTableFilters = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const currentValues = Object.fromEntries(
-    searchParams.entries()
-  ) as QuerySchema;
+  const [currentValues, setCurrentValues] = useState<QuerySchema>(
+    Object.fromEntries(searchParams.entries())
+  );
 
   const debounceChangeHandler = useDebounce((updatedQuery) => {
     router.push(`/events?${updatedQuery}`);
@@ -30,6 +31,7 @@ const EventsTableFilters = () => {
       [key]: value || "",
     });
     const updatedQuery = new URLSearchParams(query);
+    setCurrentValues(Object.fromEntries(updatedQuery.entries()));
     debounceChangeHandler(updatedQuery);
   };
 
@@ -38,31 +40,34 @@ const EventsTableFilters = () => {
       <Input
         label="Title"
         placeholder="Search by title"
-        defaultValue={decodeURIComponent(currentValues?.title || "")}
+        value={decodeURIComponent(currentValues?.title || "")}
         onChange={(e) => handleQueryChange("title", e.target.value)}
+        onClear={() => handleQueryChange("title", "")}
       />
       <Input
         label="Location"
         placeholder="Search by location"
-        defaultValue={decodeURIComponent(currentValues?.location || "")}
+        value={decodeURIComponent(currentValues?.location || "")}
         onChange={(e) => handleQueryChange("location", e.target.value)}
+        onClear={() => handleQueryChange("location", "")}
       />
       <Input
         label="Category"
         placeholder="Search by category"
-        defaultValue={decodeURIComponent(currentValues?.type || "")}
+        value={decodeURIComponent(currentValues?.type || "")}
         onChange={(e) => handleQueryChange("type", e.target.value)}
+        onClear={() => handleQueryChange("type", "")}
       />
       <DatePicker
         label="Start at"
         placeholder="Select date"
-        defaultValue={decodeURIComponent(currentValues?.starts_at || "")}
+        value={decodeURIComponent(currentValues?.starts_at || "")}
         onChange={(e) => handleQueryChange("starts_at", e.target.value)}
       />
       <DatePicker
         label="Ends at"
         placeholder="Select date"
-        defaultValue={decodeURIComponent(currentValues?.expires_at || "")}
+        value={decodeURIComponent(currentValues?.expires_at || "")}
         onChange={(e) => handleQueryChange("expires_at", e.target.value)}
       />
     </TableToolbar>
