@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${barlow.variable} antialiased`}>
-        {children}
+        <main className="p-4">{children}</main>
       </body>
     </html>
   );
