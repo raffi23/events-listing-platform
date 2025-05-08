@@ -22,7 +22,7 @@ export default async function EventsPage({ searchParams }: PropsWithParams) {
       <div className="flex gap-4 items-center">
         <NextLink
           href="/"
-          className="text-2xl size-9 flex items-center justify-center hover:bg-gray-100 border rounded"
+          className="text-2xl size-9 flex items-center justify-center hover:bg-gray-100 rounded"
         >
           {"<"}
         </NextLink>
