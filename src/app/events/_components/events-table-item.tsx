@@ -13,8 +13,10 @@ interface Props extends HTMLAttributes<HTMLTableRowElement> {
 
 const EventsTableItem: FC<Props> = ({ event, className, ...rest }) => {
   const status = useEventStatus(event);
-  const startDate = useLocalDate(event.starts_at);
-  const expireDate = useLocalDate(event.expires_at);
+  const startRaw = new Date(event.starts_at);
+  const expireRaw = new Date(event.expires_at);
+  const startDate = useLocalDate(startRaw, "date-time");
+  const expireDate = useLocalDate(expireRaw, "date-time");
 
   return (
     <TableRow className={cx("cursor-pointer", className)} {...rest}>
@@ -22,8 +24,8 @@ const EventsTableItem: FC<Props> = ({ event, className, ...rest }) => {
       <TableCell>{event.location}</TableCell>
       <TableCell>{event.type}</TableCell>
       <TableCell>{status}</TableCell>
-      <TableCell>{new Date(startDate).toLocaleDateString()}</TableCell>
-      <TableCell>{new Date(expireDate).toLocaleDateString()}</TableCell>
+      <TableCell className="min-w-[170px]">{startDate}</TableCell>
+      <TableCell className="min-w-[170px]">{expireDate}</TableCell>
     </TableRow>
   );
 };

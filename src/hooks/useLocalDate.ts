@@ -1,24 +1,19 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { formatDate } from "@/utils";
+import useMounted from "./useMounted";
+import { useEffect, useState } from "react";
 
-const useLocalDate = (date: string, mode?: "date" | "date-time" | "time") => {
-  const [localDate, setLocalDate] = useState(date);
+const useLocalDate = (date: Date, mode?: "date" | "date-time" | "time") => {
+  const mounted = useMounted();
+  const [formatted, setFormatted] = useState("N/A");
 
   useEffect(() => {
-    switch (mode) {
-      case "date-time":
-        setLocalDate(new Date(date).toLocaleString());
-        break;
-      case "time":
-        setLocalDate(new Date(date).toLocaleTimeString());
-        break;
-      default:
-        setLocalDate(new Date(date).toLocaleDateString());
-    }
-  }, [date, mode]);
+    if (!mounted) return;
+    setFormatted(formatDate(new Date(date), mode));
+  }, [mounted, date, mode]);
 
-  return localDate;
+  return formatted;
 };
 
 export default useLocalDate;
