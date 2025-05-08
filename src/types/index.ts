@@ -1,3 +1,6 @@
+import { eventQuerySchema } from "@/utils/validations";
+import { z } from "zod";
+
 export type EventListing = {
   id: number;
   title: string;
@@ -19,3 +22,5 @@ export type PropsWithParams = {
   params: Promise<Record<string, string>>;
   searchParams: Promise<Record<string, string>>;
 };
+
+export type EventsQuerySchema = z.infer<typeof eventQuerySchema>;
