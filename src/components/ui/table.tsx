@@ -21,7 +21,7 @@ const TableToolbar: FC<HTMLAttributes<HTMLDivElement>> = ({
   return (
     <div
       className={cx(
-        "sticky top-0 grid grid-cols-2 sm:flex sm:items-center gap-2 flex-wrap bg-white dark:bg-gray-800 rounded-b-md p-4 border-b",
+        "sticky top-0 grid grid-cols-2 sm:flex sm:items-center gap-2 flex-wrap bg-white dark:bg-gray-800 p-4 border-b",
         className
       )}
       {...rest}
