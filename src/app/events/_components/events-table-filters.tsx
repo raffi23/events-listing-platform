@@ -2,11 +2,18 @@
 
 import DatePicker from "@/components/ui/date-picker";
 import Input from "@/components/ui/input";
+import { Option, Select } from "@/components/ui/select";
 import { TableToolbar } from "@/components/ui/table";
 import { EventsQuerySchema } from "@/types";
 import { FC } from "react";
 
 type Props = {
+  locations: Option[];
+  categories: Option[];
+  selectedLocations: Option[];
+  selectedCategories: Option[];
+  onLocationChange: (values: Option[]) => void;
+  onCategoryChange: (values: Option[]) => void;
   query?: EventsQuerySchema;
   handleQueryChange: <T extends keyof EventsQuerySchema>(
     key: T,
@@ -14,7 +21,16 @@ type Props = {
   ) => void;
 };
 
-const EventsTableFilters: FC<Props> = ({ query, handleQueryChange }) => {
+const EventsTableFilters: FC<Props> = ({
+  locations,
+  categories,
+  selectedCategories,
+  selectedLocations,
+  onLocationChange,
+  onCategoryChange,
+  query,
+  handleQueryChange,
+}) => {
   return (
     <TableToolbar>
       <Input
@@ -24,19 +40,17 @@ const EventsTableFilters: FC<Props> = ({ query, handleQueryChange }) => {
         onChange={(e) => handleQueryChange("title", e.target.value)}
         onClear={() => handleQueryChange("title", "")}
       />
-      <Input
+      <Select
         label="Location"
-        placeholder="Search by location"
-        value={decodeURIComponent(query?.location || "")}
-        onChange={(e) => handleQueryChange("location", e.target.value)}
-        onClear={() => handleQueryChange("location", "")}
+        value={selectedLocations}
+        onChange={(v) => onLocationChange(v)}
+        items={locations}
       />
-      <Input
-        label="Category"
-        placeholder="Search by category"
-        value={decodeURIComponent(query?.type || "")}
-        onChange={(e) => handleQueryChange("type", e.target.value)}
-        onClear={() => handleQueryChange("type", "")}
+      <Select
+        label="Categories"
+        value={selectedCategories}
+        onChange={(v) => onCategoryChange(v)}
+        items={categories}
       />
       <DatePicker
         label="Start at"

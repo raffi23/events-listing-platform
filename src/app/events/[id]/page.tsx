@@ -1,3 +1,4 @@
+import EventTimer from "@/components/event-timer";
 import NextImage from "@/components/next-image";
 import {
   Card,
@@ -7,12 +8,11 @@ import {
   CardSubtitle,
   CardTitle,
 } from "@/components/ui/card";
+import { appConfig } from "@/config";
 import { getEvents } from "@/lib/api";
 import { PropsWithParams } from "@/types";
-import EventTimer from "./_component/event-timer";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { appConfig } from "@/config";
 
 export const revalidate = 60;
 export const dynamicParams = true;

@@ -1,7 +1,7 @@
 "use client";
 
+import EventTimer from "@/components/event-timer";
 import { TableCell, TableRow } from "@/components/ui/table";
-import useEventStatus from "@/hooks/useEventStatus";
 import useLocalDate from "@/hooks/useLocalDate";
 import { EventListing } from "@/types";
 import { cx } from "@/utils";
@@ -12,7 +12,6 @@ interface Props extends HTMLAttributes<HTMLTableRowElement> {
 }
 
 const EventsTableItem: FC<Props> = ({ event, className, ...rest }) => {
-  const status = useEventStatus(event);
   const startRaw = new Date(event.starts_at);
   const expireRaw = new Date(event.expires_at);
   const startDate = useLocalDate(startRaw, "date-time");
@@ -23,7 +22,9 @@ const EventsTableItem: FC<Props> = ({ event, className, ...rest }) => {
       <TableCell>{event.title}</TableCell>
       <TableCell>{event.location}</TableCell>
       <TableCell>{event.type}</TableCell>
-      <TableCell>{status}</TableCell>
+      <TableCell>
+        <EventTimer event={event} />
+      </TableCell>
       <TableCell className="min-w-[170px]">{startDate}</TableCell>
       <TableCell className="min-w-[170px]">{expireDate}</TableCell>
     </TableRow>
